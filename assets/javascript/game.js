@@ -8,7 +8,10 @@ var game = {
 
 
   "dictionary": ["PICARD", "ENTERPRISE", "ROMULAN", "PHASER", "IMZADI", "Q",
-                 "HOLODECK", "FERENGI", "KLINGON", "PRIME DIRECTIVE"],
+                 "HOLODECK", "FERENGI", "KLINGON", "PRIME DIRECTIVE", "TURBOLIFT",
+                 "JEFFERIES TUBE", "BETAZOID", "DATA", "WESLEY", "CAPTAIN",
+                 "WARP CORE", "WORMHOLE", "STARFLEET", "CARDASSIAN", "GEORDI",
+                 "NEUTRAL ZONE", "GUINAN", "ENGINEERING", "TASHA YAR"],
 
   // Returns a random word.
   getWord: function() {
@@ -47,24 +50,24 @@ var game = {
       this.lettersGuessed.push(letter);
 
       // Replace the underscores with the letter for all occurrences of the letter in the word
-      console.log(this.currentState);
-      console.log(this.currentWord);
-
       for(var i=0; i<this.currentWord.length; i++) {
         if(this.currentWord.charAt(i) === letter) {
          this.currentState[i] = letter;
         }
       }
-      console.log(this.currentState);
+      // console.log(this.currentState);
       this.update();
 
       // If the word is complete, we win.
       if(this.currentState.indexOf("_") === -1) {
+        this.score++;
 
         // Do decorative stuff here (pic/music/whatever)
+        if(this.score > 4 && this.score % 5 === 0) {
+          var audio = new Audio("assets/audio/pingpong.wav").play();
+        }
 
         alert("Congratulations!  You correctly guessed the word " + this.currentWord + ".");
-        this.score++;
 
         this.reset();
       }
