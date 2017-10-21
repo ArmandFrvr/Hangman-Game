@@ -1,0 +1,38 @@
+
+body {
+  text-align: center;
+}
+
+#hangman {
+  background-color: rgba(70, 70, 100, 0.8);
+  text-align: center;
+  border-radius: 40px;
+  border: 7px solid #EE811F;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-bottom: 20px;
+}
+
+#current {
+  font-size: larger;
+  margin-bottom: 20px;
+  background-color: #EE811F;
+}
+
+h1 {
+  font-size: 7em;
+  color: #357CC6;
+  margin-bottom: 0;
+  text-shadow: 0 0 3px #6cf;
+}
+
+.subtext {
+  vertical-align: -.5em;
+}
+
+h2 {
+  font-size: 4em;
+  color: #357CC6;
+  margin-top: 0px;
+}
