@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hangman Game</title>
+  <link rel="stylesheet" href="assets/css/starfield.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="assets/javascript/game.js"></script>
@@ -11,28 +12,30 @@
 
 <body>
 
+  <h1>HANG<span class="subtext">MAN</span></h1>
+  <h2>THE NEXT GENERATION</h2>
 
-<p>Press a letter to get started.</p>
+  <div id="space">
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+    <div class="stars"></div>
+  </div>
 
-<p>Wins: <span id="wins"></span></p>
+  <div id="hangman">
+    <p>Press a letter to get started.</p>
 
-<p>Current word:</p>
-<div id="current"></div>
+    <p>Wins: <span id="wins"></span></p>
 
-<p>Remaining guesses: <span id="remaining"></span></p>
+    <p>Current Word</p>
+    <div id="current"></div>
 
-<p>Letters already guessed:</p>
-<div id="lettersGuessed"></div>
+    <p>Remaining Guesses: <span id="remaining"></span></p>
 
-
-
-
-
-
-
-
-
-
+    <p>Letters Already Guessed:</p>
+    <div id="lettersGuessed"></div>
+  </div>
 
 </body>
 </html>
