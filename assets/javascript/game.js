@@ -6,7 +6,6 @@ var game = {
   "currentWord" : "",
   "currentState": [],
 
-
   "dictionary": ["PICARD", "ENTERPRISE", "ROMULAN", "PHASER", "IMZADI", "Q",
                  "HOLODECK", "FERENGI", "KLINGON", "PRIME DIRECTIVE", "TURBOLIFT",
                  "JEFFERIES TUBE", "BETAZOID", "DATA", "WESLEY", "CAPTAIN",
