@@ -37,7 +37,7 @@ var game = {
       this.update();
 
       if(this.guessesRemaining === 0) {
-        alert("YOU ARE NOT A TREKKIE!!!  You lose this round.");
+        alert("YOU ARE NOT A TREKKIE!!!  You lose this round.  The word was \"" + this.currentWord + "\".");
         this.reset(); // restart the game
         return;
       }
