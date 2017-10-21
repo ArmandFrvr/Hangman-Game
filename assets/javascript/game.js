@@ -1,8 +1,4 @@
 
-
-
-
-
 var game = {
   "score": 0,
   "guessesRemaining": 0,
@@ -20,16 +16,23 @@ var game = {
   },
 
   guessLetter: function(letter) {
-    // if letter was already guessed, return.
+    // If key was not a letter, return because somebody wasn't doing their input validation.
+    // if(!letter.match(/[A-Z]/)) {
+    //   console.log ("Bad key: " + letter);
+    //   return;
+    // }
+
+    // If letter was already guessed, return.
     if (this.lettersGuessed.indexOf(letter) >= 0) {
       return;
     }
 
-    // else if letter is not in word, add letter to lettersGuessed, decrease guessesRemaining, and return.
+    // Else if letter is not in word, add letter to lettersGuessed, decrease guessesRemaining, and return.
     // -- But if gussesRemaining hits 0, you lose this round.
-    else if (!currentWord.includes(letter)) {
+    else if (!this.currentWord.includes(letter)) {
       this.lettersGuessed.push(letter);
       this.guessesRemaining--;
+      this.update();
 
       if(this.guessesRemaining === 0) {
         alert("YOU ARE NOT A TREKKIE!!!  You lose this round.");
@@ -44,19 +47,24 @@ var game = {
       this.lettersGuessed.push(letter);
 
       // Replace the underscores with the letter for all occurrences of the letter in the word
-      this.currentState.forEach(function(currentValue, index, arr) {
-        if(this.currentWord.charAt(index) === letter) {
-          arr[index] = letter;
-        }
-      });
+      console.log(this.currentState);
+      console.log(this.currentWord);
 
+      for(var i=0; i<this.currentWord.length; i++) {
+        if(this.currentWord.charAt(i) === letter) {
+         this.currentState[i] = letter;
+        }
+      }
+      console.log(this.currentState);
+      this.update();
 
       // If the word is complete, we win.
       if(this.currentState.indexOf("_") === -1) {
-        alert("Congratulations!  You correctly guessed the word " + this.currentWord + ".")
-        this.score++;
 
         // Do decorative stuff here (pic/music/whatever)
+
+        alert("Congratulations!  You correctly guessed the word " + this.currentWord + ".");
+        this.score++;
 
         this.reset();
       }
@@ -66,46 +74,45 @@ var game = {
 
   },
 
+  // Resets the game and picks a new word.
   reset: function() {
     this.currentState = [];
     this.lettersGuessed = [];
-    this.currentWord = getWord();
+    this.currentWord = this.getWord();
     console.log("New word is: " + this.currentWord);
     this.guessesRemaining = this.currentWord.length + 5;
 
     for(var i = 0; i < this.currentWord.length; i++) {
       this.currentState.push("_");
     }
+
+    this.update();
+  },
+
+  // Refreshes the display with the latest info
+  update: function() {
+    $("#wins").text(this.score);
+    $("#current").text(this.currentState.join(" "));
+    $("#remaining").text(this.guessesRemaining);
+    $("#lettersGuessed").text(this.lettersGuessed);
   }
 
 }
 
 
-//After the user wins/loses the game should automatically choose another word and make the user play it.
-
 $(document).ready(function() {
 
   game.reset();
 
-  document.onkeyup = function(event) {
-    var playerKey = event.key;
-    playerKey = playerKey.toUpperCase();
+  $(document).keypress(function(event) {
 
-    game.guessLetter(playerKey);
-  }
-
-
-
-
-
-
-
+    // If the key pressed was a letter, then make a guess.
+    if(event.which > 96 && event.which < 123 || event.which === 32) {
+      game.guessLetter(String.fromCharCode(event.which).toUpperCase());
+    }
+  });
 
 });
-
-
-// Use key events to listen for the letters that your players will type.
-
 
 
 function randomNum(min,max)
